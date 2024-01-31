@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "4097260b-bce0-43bb-b714-7d5a526fbbc0",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32341974"
+	},
+	"item": [
+		{
+			"name": "http://localhost:4000/send",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"store_id\":\"65ba1db2d0286336f55654bd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/send"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/admin/sigin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"store_id\":\"65ba1db2d0286336f55654bd\",\n    \"employee_id\":\"\",\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/admin/sigin"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/bookappointment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"storeId\":\"65ba1db2d0286336f55654bd\",\n    \"employeeId\":\"65ba2f8d4451be9d6124ebd3\",\n    \"scheduledTime\":\"01:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/bookappointment"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/createstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"storeName\":\"Harshit Store\",\n    \"open\":\"12:00\",\n    \"close\":\"20:00\",\n    \"noOfEmp\":78\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/createstore"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/logout",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:4000/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/employee/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Harshit Joshi\",\n    \"email\":\"harshitjoshi2002@gamil.com\",\n    \"password\":\"123456\",\n    \"store_id\":\"65ba1db2d0286336f55654bd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/employee/register"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/admin/sigin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"harshitjoshi2002@gamil.com\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/admin/sigin"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/user/sigin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"harshitjoshi2002@gamil.com\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/user/sigin"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/user/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Harshit Joshi\",\n    \"email\":\"harshitjoshi2002@gamil.com\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/user/register"
+			},
+			"response": []
+		}
+	]
+}
