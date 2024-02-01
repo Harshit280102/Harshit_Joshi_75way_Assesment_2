@@ -37,16 +37,16 @@ app.use(bodyParser.json()) ;
 app.use(cookieParser()) ;
 
 
-app.post('/user/register',registerUser);      //okay Tested
-app.post('/user/sigin',userSignIn);            //okay Tested
+app.post('/user/register',registerUser);      //okay Tested   //client okay
+app.post('/user/signin',userSignIn);            //okay Tested   //client okay
 
-app.post('/employee/register',registerEmployee); //okay Tested           
-app.post('/employee/sigin',employeeSignIn);     //okay Tested
+app.post('/employee/register',registerEmployee); //okay Tested   //client okay
+app.post('/employee/sigin',employeeSignIn);     //okay Tested    //client okay
 
-app.post('/admin/register',registerAdmin);      //okay Tested  
-app.post('/admin/sigin',adminSignIn);           //okay Tested
+app.post('/admin/register',registerAdmin);      //okay Tested     //client okay
+app.post('/admin/sigin',adminSignIn);           //okay Tested     //client okay
 
-app.delete("/logout",logout);                   //okay Tested
+app.delete("/logout",logout);                   //okay Tested     //client okay
 
 app.post("/createstore",checkAdmin,createStore)  //okay Tested
 

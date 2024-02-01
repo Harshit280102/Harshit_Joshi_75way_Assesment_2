@@ -142,10 +142,7 @@ export const userSignIn : RequestHandler = async (req:Request,res:Response) => {
         const authToken = jwt.sign({genid : user._id,role:user.role},process.env.JWT_SECRET_KEY||" ",{expiresIn : '12h'}) ;
         const refreshToken = jwt.sign({genid : user._id,role:user.role},process.env.JWT_REFRESH_SECRET_KEY||" ",{expiresIn : '24h'}) ;
 
-        res.cookie('authToken',authToken,({httpOnly : true})) ;
-        res.cookie('refreshToken',refreshToken,({httpOnly:true})) ;
-        console.log(authToken);
-        return res.status(200).json({ok:true,message : "Login Successful..",userId:user._id}) ;
+        return res.status(200).json({userId:user._id, authToken:authToken, refreshToken:refreshToken, name:user.name}) ;
 
     }
     catch(err){
@@ -171,10 +168,10 @@ export const employeeSignIn : RequestHandler = async (req:Request,res:Response) 
         const authToken = jwt.sign({genid : employee._id,role:employee.role},process.env.JWT_SECRET_KEY||" ",{expiresIn : '12h'}) ;
         const refreshToken = jwt.sign({genid : employee._id,role:employee.role},process.env.JWT_REFRESH_SECRET_KEY||" ",{expiresIn : '24h'}) ;
 
-        res.cookie('authToken',authToken,({httpOnly : true})) ;
-        res.cookie('refreshToken',refreshToken,({httpOnly:true})) ;
-        console.log(authToken);
-        return res.status(200).json({ok:true,message : "Employee Login Successful..",empid:employee._id}) ;
+        // res.cookie('authToken',authToken,({httpOnly : true})) ;
+        // res.cookie('refreshToken',refreshToken,({httpOnly:true})) ;
+        // console.log(authToken);
+        return res.status(200).json({userId:employee._id,authToken:authToken, refreshToken:refreshToken, name:employee.name}) ;
 
     }
     catch(err){
