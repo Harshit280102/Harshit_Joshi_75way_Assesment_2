@@ -2,8 +2,8 @@ export const User:React.FC =()=>{
    
     
     return(
-        <div>
+        <section className="bg-yellow-500">
             User
-        </div>
+        </section>
     )
     }

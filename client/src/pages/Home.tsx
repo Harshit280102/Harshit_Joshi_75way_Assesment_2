@@ -55,28 +55,27 @@ export const Home:React.FC =()=>{
             {
               authToken&&refreshToken ?(
                 <div className="flex justify-center items-center">
-              <div>
-              <h2 className='text-center text-xl pb-4 font-semibold'>{name}</h2>
-              </div>
-                {
-                  role=="Admin"?(<Admin/>):(role=="User"?(<User/>):(<Employee/>))
-                }
+
+                <div className="flex flex-col">
+                    <h2 className='text-center text-l pb-4font-medium'>{name}</h2>
+                    <div className="">
+                      {
+                        role=="Admin"?(<Admin/>):(role=="User"?(<User/>):(<Employee/>))
+                      }
+                    </div>
+                    
+                </div>
+              
                 </div>
               ):(
                 <div>
                     <h4 className='text-center text-xl font-semibold'>You are Not Signed In</h4>
                 </div>
               )
-
               }
-
               </div>  : <div className=""></div>
             }
-           
             </div>
-
-       
-
               <div className="absolute bottom-0 m-6">
               <button className=" text-zinc-700 px-4" type="submit"
                 onClick={handleEmp}

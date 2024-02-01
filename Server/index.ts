@@ -46,14 +46,16 @@ app.post('/admin/signin',adminSignIn);           //okay Tested     //client okay
 
 app.delete("/logout",logout);                   //okay Tested     //client okay
 
-app.post("/createstore",checkAdmin,createStore)  //okay Tested
+app.post("/createstore",checkAdmin,createStore)  //okay Tested    //client okay
+
+
 
 //made check employee so that no employee can book himself or other employee in the store maybe not needed in this project
 app.post("/bookappointment",checkEmpnot,bookAppointment)  //okay Tested 
 
 app.get("/available",checkAppointment);  //okay Tested
 
-app.get("/send",sendMail);
+app.get("/send",sendMail);              //okay Tested
 
 
 app.get("/",(req:any,res:any)=>{
