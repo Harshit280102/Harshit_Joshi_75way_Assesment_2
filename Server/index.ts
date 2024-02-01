@@ -12,8 +12,6 @@ import {createStore,bookAppointment} from './Controller/store';
 import {checkAppointment} from './Controller/Appointment';
 import {sendMail} from './Helper/mail/cron'
 
-import { nmail } from "./Helper/mail/nodemailer";
-
 
 dotenv.config();
 

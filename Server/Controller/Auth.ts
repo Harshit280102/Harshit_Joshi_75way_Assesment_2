@@ -197,10 +197,10 @@ export const adminSignIn : RequestHandler = async (req:Request,res:Response) => 
         const authToken = jwt.sign({genid : admin._id,role:admin.role},process.env.JWT_SECRET_KEY||"",{expiresIn : '12h'}) ;
         const refreshToken = jwt.sign({genid : admin._id,role:admin.role},process.env.JWT_REFRESH_SECRET_KEY||"",{expiresIn : '24h'}) ;
 
-        res.cookie('authToken',authToken,({httpOnly : true})) ;
-        res.cookie('refreshToken',refreshToken,({httpOnly:true})) ;
-        console.log(authToken);
-        return res.status(200).json({ok:true,message : "Admin Login Successful..",adminid:admin._id}) ;
+        // res.cookie('authToken',authToken,({httpOnly : true})) ;
+        // res.cookie('refreshToken',refreshToken,({httpOnly:true})) ;
+        // console.log(authToken);
+        return res.status(200).json({userId:admin._id, authToken:authToken, refreshToken:refreshToken, name:admin.name}) ;
 
     }
     catch(err){

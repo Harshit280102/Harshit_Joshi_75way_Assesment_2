@@ -8,19 +8,16 @@ import { useNavigate } from "react-router-dom";
 export const Home:React.FC =()=>{
     const {name,authToken,refreshToken}=useAppSelector(selectAuth);
     const navigate =useNavigate();
-    const dispatch =useAppDispatch();
-
-    const handlelogout =()=>{
-    dispatch(logout());
-    window.alert("User is Logged out");
-    navigate("/login")
-    }
+    // const dispatch =useAppDispatch();
  
     const handleIntrest =()=>{
         navigate("/intrest");
     }
     const handleEmp =()=>{
         navigate("emp/register");
+    }
+    const handleAdmin =()=>{
+      navigate("/admin");
     }
     
   
@@ -34,24 +31,27 @@ export const Home:React.FC =()=>{
             </ErrorBoundary>
             {
               authToken&&refreshToken ?(
-                <div>
+                <div className="flex justify-center items-center">
                 
                 <button className="bg-violet-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline  transition  hover:delay-300 duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-700 ease-in-out" type="submit"
                 onClick={()=>handleIntrest()}
-                >See Stores</button>
+                >See All Stores</button>
                 
                 </div>
                 
               ):(
                 <div>
-                    <h4 className='text-center text-xl font-bold'>Okay You are Not Signed In</h4>
+                    <h4 className='text-center text-xl font-semibold'>You are Not Signed In</h4>
                 </div>
-              )
-
-            }
-            <button className=" text-blue font-bold py-2 px-4" type="submit"
+              )}
+              <div className="absolute bottom-0 m-6">
+              <button className=" text-zinc-700 px-4" type="submit"
                 onClick={handleEmp}
-                >Register as a Employee</button>
+                >Register as a Employee ?</button>
+               <button className=" text-zinc-700 px-4" type="submit"
+                onClick={handleAdmin}>Admin Sign In ?</button>
+              </div>
+            
         </section>
     )
 }

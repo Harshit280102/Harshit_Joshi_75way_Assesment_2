@@ -68,6 +68,15 @@ export const apiEndpoint =createApi({
             }
         }),
 
+        SigninAdmin:builder.mutation({
+            query:(payload:{email:string;password:string})=>{
+                return{
+                    url:"/admin/sigin",
+                    method:'POST',
+                    body:payload,
+                }
+            }
+        }),
 
         createIntrest:builder.mutation({
             query:(payload:{intrest:string})=>{
@@ -92,4 +101,5 @@ export const {useRegisterUserMutation,
     useCreateIntrestMutation,
     useGetJobsQuery,
     useRegisterEmployeeMutation,
-    useSigninEmployeeMutation} =apiEndpoint;
+    useSigninEmployeeMutation,
+useSigninAdminMutation} =apiEndpoint;
