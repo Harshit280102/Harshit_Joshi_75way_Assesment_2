@@ -1,46 +1,48 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
+import {useCreateStoreMutation} from "../../redux/services/endpoint";
+import { useNavigate } from 'react-router-dom';
+
 
 export const Store:React.FC =()=>{
 
-    const [storename,setStorename] =useState<string>("");
+    const [storeName,setStorename] =useState<string>("");
     const [open,setOpen]=useState<string>("");
     const [close,setClose]=useState<string>("");
     
+    console.log(open);
+    console.log(storeName);
+    console.log(close);
+
+
   
+    const navigate=useNavigate();
+
+
   
-    // const navigate=useNavigate();
+    const [createStore,responseInfo]=useCreateStoreMutation();
   
-    // // const [createUser,{data,isSuccess,isError,error}]=useRegisterUserMutation();
-  
-    // console.log(username);
-    // console.log(email);
-    // console.log(password);
-  
+
     async function submitUser(event:React.FormEvent<HTMLFormElement>){
-    //   event.preventDefault();
-    //   // const you:User ={
-    //   //   name:username,
-    //   //   email,
-    //   //   password
-    //   // }
-    //  try{
-      // const valid = await userSchema.validate(you);
+      event.preventDefault();
+
+     try{
+
     
-    //   await createUser({ name:username,email,password});
-    //  }catch(err){
-    //   window.alert(err);
-    //  }
+      await createStore({storeName,open,close });
+     }catch(err){
+      window.alert(err);
+     }
     }
   
-    // useEffect(()=>{
-    //   if(isSuccess){
-    //     window.alert(`${data.name} you are Registered`);
-    //     navigate("/login")
-    //   }
-    //   if(isError){
-    //     window.alert(`Error in User Registeration`);
-    //   }
-    // },[isSuccess,isError])
+    useEffect(()=>{
+      if(responseInfo.isSuccess){
+        window.alert(`${responseInfo.data.name}`);
+        navigate("/")
+      }
+      if(responseInfo.isError){
+        window.alert(`Error in User Registeration`);
+      }
+    },[responseInfo.isSuccess,responseInfo.isError])
 
 
 
@@ -57,7 +59,7 @@ return(
             </label>
             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  
             type="text" 
-            value={storename}
+            value={storeName}
             onChange={(e)=>setStorename(e.target.value)}
             placeholder="Store Name" 
             />

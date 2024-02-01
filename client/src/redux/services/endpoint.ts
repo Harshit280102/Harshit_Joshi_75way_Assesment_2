@@ -78,6 +78,16 @@ export const apiEndpoint =createApi({
             }
         }),
 
+        CreateStore:builder.mutation({
+            query:(payload:{storeName:string;open:string;close:string})=>{
+                return{
+                    url:"createstore",
+                    method:'POST',
+                    body:payload,
+                }
+            }
+        }),
+
         createIntrest:builder.mutation({
             query:(payload:{intrest:string})=>{
                 return{
@@ -102,4 +112,5 @@ export const {useRegisterUserMutation,
     useGetJobsQuery,
     useRegisterEmployeeMutation,
     useSigninEmployeeMutation,
-useSigninAdminMutation} =apiEndpoint;
+useSigninAdminMutation,
+useCreateStoreMutation} =apiEndpoint;
