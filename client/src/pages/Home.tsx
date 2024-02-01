@@ -1,49 +1,82 @@
 
-import { useAppDispatch, useAppSelector } from "../redux/services/Hooks";
-import ErrorBoundary from "../Error.Boundary";
-import { logout,selectAuth } from "../redux/services/authslice";
+import { useAppSelector } from "../redux/services/Hooks";
+// import ErrorBoundary from "../Error.Boundary";
+import {  selectAuth } from "../redux/services/authslice";
 import { useNavigate } from "react-router-dom";
 
+//Role Render Components
+import {Admin} from "../components/role_render/Admin";
+import { User } from "../components/role_render/User";
+import { Employee } from "../components/role_render/Employee";
+import { useEffect ,useState} from "react";
 
 export const Home:React.FC =()=>{
-    const {name,authToken,refreshToken}=useAppSelector(selectAuth);
+   
+    const [name,setName] = useState<string>("") ;
+    const [role,setRole] = useState<string>("") ;
+    const [loading,isLoading] = useState<Boolean>(false) ;
+
+
     const navigate =useNavigate();
     // const dispatch =useAppDispatch();
- 
-    const handleIntrest =()=>{
-        navigate("/intrest");
+
+  useEffect(()=>{
+    const local:any = localStorage.getItem("user");
+    console.log(local) ;
+    if(local)   {
+      const localObject = JSON.parse(local) ;
+      setName(localObject.name) ;
+      setRole(localObject.role) ;
     }
+    isLoading(true) ;
+  },[])
+
+  const {authToken,refreshToken}=useAppSelector(selectAuth);
+ 
     const handleEmp =()=>{
         navigate("emp/register");
     }
     const handleAdmin =()=>{
       navigate("/admin");
     }
+
+    
     
   
     return(
-        <section className="w-full max-w-xs mx-auto mt-10">
-            <ErrorBoundary>
+        <section className="w-full max-w-xs mx-auto mt-4">
             <div>
-            <h1 className='text-center text-3xl pb-6 font-bold text-violet-700'>Welcome to the Home Page</h1>
-            <h2 className='text-center text-3xl pb-6 font-bold'>{name}</h2>
+            <h1 className='text-center text-2xl pb-4 font-bold text-violet-700'>Welcome to the Home Page</h1>
             </div>
-            </ErrorBoundary>
+            <div>
+
+            {
+              loading ? <div className="">
             {
               authToken&&refreshToken ?(
                 <div className="flex justify-center items-center">
-                
-                <button className="bg-violet-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline  transition  hover:delay-300 duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-700 ease-in-out" type="submit"
-                onClick={()=>handleIntrest()}
-                >See All Stores</button>
-                
+              <div>
+              <h2 className='text-center text-xl pb-4 font-semibold'>{name}</h2>
+              </div>
+                {
+                  role=="Admin"?(<Admin/>):(role=="User"?(<User/>):(<Employee/>))
+                }
                 </div>
-                
               ):(
                 <div>
                     <h4 className='text-center text-xl font-semibold'>You are Not Signed In</h4>
                 </div>
-              )}
+              )
+
+              }
+
+              </div>  : <div className=""></div>
+            }
+           
+            </div>
+
+       
+
               <div className="absolute bottom-0 m-6">
               <button className=" text-zinc-700 px-4" type="submit"
                 onClick={handleEmp}
@@ -55,3 +88,5 @@ export const Home:React.FC =()=>{
         </section>
     )
 }
+
+

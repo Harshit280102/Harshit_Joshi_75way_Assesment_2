@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 // import { userLogin } from '../Helper/Yup';
-import {useSigninUserMutation} from "../../redux/services/endpoint"
+import {useSigninUserMutation} from "../../../redux/services/endpoint"
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/services/Hooks';
-import { setUser } from '../../redux/services/authslice';
+import { useAppDispatch } from '../../../redux/services/Hooks';
+import { setUser } from '../../../redux/services/authslice';
 
 
 export const Login:React.FC =()=>{
@@ -36,7 +36,7 @@ export const Login:React.FC =()=>{
     if(responsInfo.isSuccess){
       console.log(responsInfo.data)
       window.alert(`${responsInfo.data.name} Welcome`);
-      dispatch(setUser({name:responsInfo.data.name, authToken:responsInfo.data.authToken, refreshToken:responsInfo.data.refreshToken}));
+      dispatch(setUser({name:responsInfo.data.name, authToken:responsInfo.data.authToken, refreshToken:responsInfo.data.refreshToken, role:responsInfo.data.role}));
       console.log(responsInfo.data);
       navigate("/")
     }

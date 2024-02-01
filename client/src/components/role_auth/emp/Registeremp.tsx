@@ -1,62 +1,59 @@
 import { useEffect, useState } from 'react';
-// import { userSchema } from '../Helper/Yup';
-import {useRegisterUserMutation} from '../../redux/services/endpoint';
+import {useRegisterEmployeeMutation} from '../../../redux/services/endpoint';
 import { useNavigate } from 'react-router-dom';
 
-// interface User{
-//   name:String,
-//   email:String,
-//   password:string,
-// }
 
 
-export const Register:React.FC =()=>{
+
+export const Registeremp:React.FC =()=>{
   const [username,setUsername] =useState<string>("");
   const [email,setEmail]=useState<string>("");
   const [password,setPassword]=useState<string>("");
+  const [store,setStore]=useState<string>("");
 
 
   const navigate=useNavigate();
 
-  const [createUser,{data,isSuccess,isError,error}]=useRegisterUserMutation();
+  const [createEmp,responseInfo]=useRegisterEmployeeMutation();
 
   console.log(username);
   console.log(email);
   console.log(password);
+  console.log(store);
 
   async function submitUser(event:React.FormEvent<HTMLFormElement>){
     event.preventDefault();
-    // const you:User ={
-    //   name:username,
-    //   email,
-    //   password
-    // }
    try{
     // const valid = await userSchema.validate(you);
   
-    await createUser({ name:username,email,password});
+    await createEmp({ name:username,email,password,store_id:store});
    }catch(err){
     window.alert(err);
    }
   }
 
+  async function handleloginemp(){
+  navigate('/emp/login')
+  }
+ 
+
   useEffect(()=>{
-    if(isSuccess){
-      window.alert(`${data.name} you are Registered`);
-      navigate("/login")
+    if(responseInfo.isSuccess){
+      window.alert(`${responseInfo.data.Employee_create.name} you are now a Registered Employee in ${responseInfo.data.store_located.storeName}`);
+      navigate("/emp/login")
     }
-    if(isError){
-      window.alert(`Error in User Registeration`);
+    if(responseInfo.isError){
+      window.alert(`Error in Employee Registeration`);
     }
-  },[isSuccess,isError])
+  },[responseInfo.isSuccess,responseInfo.isError])
 
     return(
         <div className="w-full max-w-xs mx-auto mt-10">
         <form className="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-2" onSubmit={(e)=>submitUser(e)}>
-            <h3 className='text-center text-3xl pb-6 font-bold text-violet-700'>Register</h3>
+            <h3 className='text-center text-3xl pb-6 font-bold text-violet-700'>Register Employee</h3>
           <div className="mb-3">
             <label className="block text-gray-600 text-sm font-bold mb-2" >
-              Username
+              Employee Name
             </label>
             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  
             type="text" 
@@ -85,6 +82,16 @@ export const Register:React.FC =()=>{
              onChange={(e)=>setPassword(e.target.value)}
              placeholder="*********"/>
           </div>
+          <div className="mb-3">
+            <label className="block text-gray-600 text-sm font-bold mb-2" >
+              Store-Id
+            </label>
+            <input className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+             type="store" 
+             value={store}
+             onChange={(e)=>setStore(e.target.value)}
+             placeholder="enter your store ID"/>
+          </div>
           <div className="flex items-center justify-between">
             <button className="bg-violet-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline  transition  hover:delay-300 duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-700 ease-in-out" type="submit">
               Register
@@ -92,6 +99,10 @@ export const Register:React.FC =()=>{
         
           </div>
         </form>
+        <div className=" m-6">
+               <button className=" text-zinc-700 px-4" type="submit"
+                onClick={handleloginemp}>Already a Employee?</button>
+              </div>
     
       </div>
     )

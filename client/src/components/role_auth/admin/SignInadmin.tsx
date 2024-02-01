@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 // import { userLogin } from '../Helper/Yup';
-import {useSigninEmployeeMutation} from "../../redux/services/endpoint";
+import {useSigninAdminMutation} from "../../../redux/services/endpoint";
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/services/Hooks';
-import { setUser } from '../../redux/services/authslice';
+import { useAppDispatch } from '../../../redux/services/Hooks';
+import { setUser } from '../../../redux/services/authslice';
 
 
-export const Loginemp:React.FC =()=>{
+export const SignInadmin:React.FC =()=>{
   const [email,setEmail] =useState<string>("");
   const [password,setPassword]=useState<string>("");
-  const [loginemp,responsInfo]=useSigninEmployeeMutation();
+  const [loginadmin,responsInfo]=useSigninAdminMutation();
   
   const dispatch =useAppDispatch();
 
@@ -24,7 +24,7 @@ export const Loginemp:React.FC =()=>{
     // }
    try{
     // const valid = await userLogin.validate(you);
-    await loginemp({email,password});
+    await loginadmin({email,password});
 
    }catch(err){
     window.alert(err);
@@ -35,8 +35,8 @@ export const Loginemp:React.FC =()=>{
   useEffect(()=>{
     if(responsInfo.isSuccess){
       console.log(responsInfo.data)
-      window.alert(`${responsInfo.data.name} Welcome`);
-      dispatch(setUser({name:responsInfo.data.name, authToken:responsInfo.data.authToken, refreshToken:responsInfo.data.refreshToken}));
+      window.alert(`${responsInfo.data.name} Welcome Admin`);
+      dispatch(setUser({name:responsInfo.data.name, authToken:responsInfo.data.authToken, refreshToken:responsInfo.data.refreshToken, role:responsInfo.data.role}));
       console.log(responsInfo.data);
       navigate("/")
     }
@@ -49,7 +49,7 @@ export const Loginemp:React.FC =()=>{
     return(
         <div className="w-full max-w-xs mx-auto mt-20">
         <form className="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={(e)=>loginUser(e)}>
-            <h3 className='text-center text-3xl pb-6 font-bold text-violet-700'>Login Employee</h3>
+            <h3 className='text-center text-3xl pb-6 font-bold text-violet-700'>Admin Portal</h3>
           <div className="mb-4">
             <label className="block text-gray-600 text-sm font-bold mb-2" >
               Email

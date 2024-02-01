@@ -71,7 +71,7 @@ export const apiEndpoint =createApi({
         SigninAdmin:builder.mutation({
             query:(payload:{email:string;password:string})=>{
                 return{
-                    url:"/admin/sigin",
+                    url:"/admin/signin",
                     method:'POST',
                     body:payload,
                 }

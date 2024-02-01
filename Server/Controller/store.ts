@@ -28,9 +28,11 @@ export const createStore : RequestHandler =async(req,res)=>{
     }
 
     if(!adminid) {return res.status(500).send("Admin can only create Data")}
+
+    console.log(adminid);
    
     let admin=await Admin.findOne({_id:adminid});
-    if(!admin){res.status(401).send("Admin not Found")}
+    if(!admin){return res.status(401).send("Admin not Found")}
     
         
    

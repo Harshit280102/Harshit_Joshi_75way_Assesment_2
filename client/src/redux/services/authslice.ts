@@ -5,6 +5,7 @@ export interface AuthState{
     name:string | null;
     authToken:string | null;
     refreshToken:string |null;
+    role:string | null;
 }
 const data = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")!): {};
 const authSlice =createSlice({
@@ -13,23 +14,27 @@ const authSlice =createSlice({
         name:null,
         authToken:data.authToken,
         refreshToken:data.refreshToken,
+        role:null,
     } as AuthState,
     reducers:{
-      setUser:(state,action:PayloadAction<{name:string; authToken:string; refreshToken:string}>)=>{
+      setUser:(state,action:PayloadAction<{name:string; authToken:string; refreshToken:string; role:string}>)=>{
         localStorage.setItem("user",JSON.stringify({
           name:action.payload.name,
           authToken:action.payload.authToken,
           refreshToken:action.payload.refreshToken,
+          role:action.payload.role,
         }))
         state.name=action.payload.name;
         state.authToken=action.payload.authToken;
         state.refreshToken=action.payload.refreshToken;
+        state.role=action.payload.role;
       },
       logout:(state) =>{
         localStorage.clear();
         state.name =null;
         state.authToken=null;
         state.refreshToken=null;
+        state.role=null;
       },
       
 

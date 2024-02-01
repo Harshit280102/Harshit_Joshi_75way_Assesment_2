@@ -39,10 +39,10 @@ app.post('/user/register',registerUser);      //okay Tested   //client okay
 app.post('/user/signin',userSignIn);            //okay Tested   //client okay
 
 app.post('/employee/register',registerEmployee); //okay Tested   //client okay
-app.post('/employee/sigin',employeeSignIn);     //okay Tested    //client okay
+app.post('/employee/signin',employeeSignIn);     //okay Tested    //client okay
 
 app.post('/admin/register',registerAdmin);      //okay Tested     //client okay
-app.post('/admin/sigin',adminSignIn);           //okay Tested     //client okay
+app.post('/admin/signin',adminSignIn);           //okay Tested     //client okay
 
 app.delete("/logout",logout);                   //okay Tested     //client okay
 

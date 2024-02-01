@@ -1,11 +1,11 @@
 import {Route, Routes} from "react-router-dom";
 import { Navbar } from "./pages/Navbar";
 import { Home } from "./pages/Home";
-import { Login } from "./components/user/Login";
-import { Register } from "./components/user/Register";
-import {Loginemp} from "./components/emp/Loginemp";
-import { Registeremp } from "./components/emp/Registeremp";
-import {SignInadmin} from "./components/admin/SignInadmin";
+import { Login } from "./components/role_auth/user/Login";
+import { Register } from "./components/role_auth/user/Register";
+import {Loginemp} from "./components/role_auth/emp/Loginemp";
+import { Registeremp } from "./components/role_auth/emp/Registeremp";
+import {SignInadmin} from "./components/role_auth/admin/SignInadmin";
 function App() {
 
   return (
