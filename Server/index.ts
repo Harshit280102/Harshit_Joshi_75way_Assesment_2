@@ -6,13 +6,13 @@ import cors from 'cors' ;
 import cookieParser from 'cookie-parser' ;
 import { CronJob } from 'cron';
 
-import {registerUser,registerEmployee,registerAdmin,userSignIn,employeeSignIn,adminSignIn,logout} from './Server/Controller/Auth';
-import {checkAdmin,checkEmpnot} from './Server/Middleware/Access';
-import {createStore,bookAppointment} from './Server/Controller/store';
-import {checkAppointment} from './Server/Controller/Appointment';
-import {sendMail} from './Server/Helper/mail/cron'
+import {registerUser,registerEmployee,registerAdmin,userSignIn,employeeSignIn,adminSignIn,logout} from './Controller/Auth';
+import {checkAdmin,checkEmpnot} from './Middleware/Access';
+import {createStore,bookAppointment} from './Controller/store';
+import {checkAppointment} from './Controller/Appointment';
+import {sendMail} from './Helper/mail/cron'
 
-import { nmail } from "./Server/Helper/mail/nodemailer";
+import { nmail } from "./Helper/mail/nodemailer";
 
 
 dotenv.config();
